@@ -62,26 +62,12 @@ gs_list <- list(
   gs_positive = list(),
   gs_negative = list()
 )
-# for (tissue in c('Heart', 'Brain', 'Muscle', 'Kidney', 'Intestine', 'Placenta', 'Immune system', 'Pancreas', 'Spleen', 'Thymus', 'Lung', 'Liver', 'Stomach')) {
-#   gs <- gene_sets_prepare(db_, tissue)
-
-#   if ('gs_positive' %in% names(gs)) {
-#     gs_list$gs_positive <- c(gs_list$gs_positive, gs$gs_positive)
-#   }
-
-#   if ('gs_negative' %in% names(gs)) {
-#     gs_list$gs_negative <- c(gs_list$gs_negative, gs$gs_negative)
-#   }
-# }
 
 for (tissue in c('Heart', 'Brain', 'Muscle', 'Kidney', 'Intestine', 'Placenta', 'Immune system', 'Pancreas', 'Spleen', 'Thymus', 'Lung', 'Liver', 'Stomach')) {
   
-  # Get the gene sets for the current tissue
   gs <- gene_sets_prepare(db_, tissue)
   
-  # If gs_positive exists in the current tissue
   if ('gs_positive' %in% names(gs)) {
-    # Append the positive gene sets to the gs_list list (without duplicating)
     for (cell_type in names(gs$gs_positive)) {
       if (!(cell_type %in% names(gs_list$gs_positive))) {
         gs_list$gs_positive[[cell_type]] <- gs$gs_positive[[cell_type]]  # Add the first time
